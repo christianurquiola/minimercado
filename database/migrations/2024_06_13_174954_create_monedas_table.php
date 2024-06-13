@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('monedas', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo')->unique(); // Código de la moneda (e.g., USD, EUR)
+            $table->string('nombre')->unique(); // Nombre de la moneda
+            $table->string('simbolo')->nullable(); // Símbolo de la moneda (e.g., $, €)
+            $table->decimal('tasa_cambio', 15, 6)->default(1.000000); // Tasa de cambio respecto a una moneda base
+            $table->boolean('activo')->default(true); // Indica si la moneda está activa
             $table->timestamps();
+            $table->softDeletes(); // Añadir softDeletes
         });
     }
 

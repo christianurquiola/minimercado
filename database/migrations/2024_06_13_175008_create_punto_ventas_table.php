@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('punto_ventas', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo')->unique(); // Código único del punto de venta
+            $table->string('nombre'); // Nombre del punto de venta
+            $table->text('descripcion')->nullable(); // Descripción del punto de venta
+            $table->string('direccion')->nullable(); // Dirección del punto de venta
+            $table->string('telefono')->nullable(); // Teléfono de contacto
             $table->timestamps();
+            $table->softDeletes(); // Añadir softDeletes
         });
     }
 
